@@ -1,6 +1,6 @@
 import { Chat } from './chat';
 
-export default function ChatPage() {
+export default function RSCChat() {
   return (
     <main className='w-full h-screen grid place-items-center p-4'>
       <h1 className='text-2xl font-bold text-center mb-4'>

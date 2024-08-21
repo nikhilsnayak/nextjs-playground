@@ -3,12 +3,17 @@ import localFont from 'next/font/local';
 
 import './globals.css';
 
+import Link from 'next/link';
+import { Home } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+
 const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
+  src: '../assets/fonts/GeistVF.woff',
   variable: '--font-geist-sans',
 });
 const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
+  src: '../assets/fonts/GeistVF.woff',
   variable: '--font-geist-mono',
 });
 
@@ -25,6 +30,16 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
+        <Button
+          asChild
+          className='fixed top-4 right-4 rounded-full z-50'
+          size={'icon'}
+          variant={'outline'}
+        >
+          <Link href='/'>
+            <Home />
+          </Link>
+        </Button>
         {children}
       </body>
     </html>

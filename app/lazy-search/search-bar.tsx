@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useTransition } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export function SearchBar() {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
   const [isSearching, startSearching] = useTransition();
   const currentQuery = searchParams.get('query') ?? undefined;
@@ -21,14 +22,14 @@ export function SearchBar() {
       const newSearchParams = new URLSearchParams(searchParams);
       newSearchParams.set('query', updatedQuery);
 
-      const path = `/?${newSearchParams.toString()}`;
+      const path = `${pathname}?${newSearchParams.toString()}`;
 
       startSearching(() => {
         router.replace(path);
       });
     } else {
       startSearching(() => {
-        router.replace('/');
+        router.replace(pathname);
       });
     }
   };
@@ -40,7 +41,7 @@ export function SearchBar() {
         name='query'
         placeholder='Search...'
         defaultValue={currentQuery}
-        className='w-64 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+        className='w-64 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none'
       />
       <button
         type='submit'
