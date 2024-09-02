@@ -16,6 +16,9 @@ export default function Home() {
           <Button asChild>
             <Link href='/rsc-chat'>RSC Chat</Link>
           </Button>
+          <Button asChild>
+            <Link href='/use-previous'>usePrevious</Link>
+          </Button>
         </section>
       </div>
     </main>
