@@ -5,8 +5,11 @@ import './globals.css';
 
 import Link from 'next/link';
 import { Home } from 'lucide-react';
+import { ThemeProvider } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
+
+import { ModeToggle } from './theme-toggle';
 
 const geistSans = localFont({
   src: '../assets/fonts/GeistVF.woff',
@@ -28,19 +31,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
-        <Button
-          asChild
-          className='fixed top-4 right-4 rounded-full z-50'
-          size={'icon'}
-          variant={'outline'}
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
         >
-          <Link href='/'>
-            <Home />
-          </Link>
-        </Button>
-        {children}
+          <div className='fixed top-4 right-4 rounded-full z-50 flex items-center gap-2'>
+            <Button asChild size={'icon'} variant={'outline'}>
+              <Link href='/'>
+                <Home />
+              </Link>
+            </Button>
+            <ModeToggle />
+          </div>
+
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

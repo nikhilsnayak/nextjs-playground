@@ -19,6 +19,9 @@ export default function Home() {
           <Button asChild>
             <Link href='/use-previous'>usePrevious</Link>
           </Button>
+          <Button asChild>
+            <Link href='/todo'>TODO</Link>
+          </Button>
         </section>
       </div>
     </main>
